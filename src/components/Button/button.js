@@ -2,9 +2,18 @@ import React from 'react'
 import './button.scss'
 
 const Button = (props) => (
-  <button className='custom-button'>
-    {props.children}
-  </button>
+  <div>
+    {props.isGoogleSignIn &&
+      <button className='google-sign-in custom-button' onClick={props.signInWithGoogle}>
+        {props.children}
+      </button> 
+    }
+    {!props.isGoogleSignIn &&
+      <button className='custom-button' onClick={props.signInWithGoogle}>
+        {props.children}
+      </button> 
+    }
+  </div>
 )
 
 export default Button

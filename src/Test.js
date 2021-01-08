@@ -5,13 +5,14 @@ import { Route } from 'react-router-dom'
 import Header from './components/Header/Header'
 import Sign from './components/Sign/Sign'
 import { auth } from './firebase/config'
-import Test from './Test'
 
-class App extends Component {
+
+class Test extends Component {
   constructor() {
     super();
     this.state={
       currentUser:null,
+      toggle:true
     }
   }
 
@@ -25,16 +26,23 @@ class App extends Component {
     })
   }
 
+  toggle = () => {
+    this.setState({toggle:!this.state.toggle})
+  }
 
   componentWillUnmount() {
     this.unsubscribe();
+    console.log('Will unmount')
   }
-
   render() {
     return (
       <div>
-        <Header currentUser={this.state.currentUser} />
-        <Route path='/' exact component={Homepage} />
+        <Header />
+        <button onClick={this.toggle} />
+        {this.state.test && 
+          <Test />
+        }
+        <Route exact path='/' component={Homepage} />
         <Route exact path='/shop' component={Shoppage} />
         <Route exact path='/sign' component={Sign} />
       </div>
@@ -42,4 +50,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Test;

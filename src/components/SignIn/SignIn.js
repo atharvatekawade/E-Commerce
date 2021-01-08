@@ -3,6 +3,7 @@ import Sign from '../Sign/Sign'
 import FormInput from '../FormInput/FormInput'
 import Button from '../Button/button'
 import './SignIn.scss'
+import { signInWithGoogle } from '../../firebase/config'
 
 class SignIn extends Component
 {
@@ -31,7 +32,10 @@ class SignIn extends Component
         <form onSubmit={this.handleSubmit}>
           <FormInput name='email' type='email' value={this.state.email} handleChange={this.handleChange} label='email' required />
           <FormInput name='password' type='password' value={this.state.password} handleChange={this.handleChange} label='password' required />
-          <Button>Sign In</Button>
+          <div className='buttons'>
+            <Button>Sign In</Button>
+            <Button signInWithGoogle={signInWithGoogle} isGoogleSignIn>Sign in with Google</Button>
+          </div>
         </form>
       </div>
     )
